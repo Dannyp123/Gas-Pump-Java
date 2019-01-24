@@ -48,11 +48,14 @@ public class GasPump {
 
     }
 
+
+
     public void receiptChoice() {
         System.out.println("Would you like a receipt [1]Yes or [2]No");
         int receipt = user.nextInt();
         if (receipt == 1) {
             System.out.println("Printing out your receipt...");
+
         }
         else {
             System.out.println("Thank you have a blessed day!!");
@@ -65,8 +68,12 @@ public class GasPump {
 
         if (payment == 1) {
             System.out.println("Please insert your card. ");
-            paymentType = "card";
+            paymentType = "Pay by card";
             getZipCode();
+        }
+        else {
+            System.out.println("Go see the person at the register inside.");
+            paymentType = "Pay inside";
         }
     }
 
