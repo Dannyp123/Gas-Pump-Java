@@ -32,6 +32,8 @@ public class GasPump {
 
             if (Pattern.matches("^[0-9]{5}(?:-[0-9]{4})?$", zCode.toString())) {
                 System.out.println("Processing...");
+                System.out.println("Thank you for your payment.");
+                receiptChoice();
                 System.exit(0);
             }
             else {
@@ -46,12 +48,24 @@ public class GasPump {
 
     }
 
+    public void receiptChoice() {
+        System.out.println("Would you like a receipt [1]Yes or [2]No");
+        int receipt = user.nextInt();
+        if (receipt == 1) {
+            System.out.println("Printing out your receipt...");
+        }
+        else {
+            System.out.println("Thank you have a blessed day!!");
+        }
+    }
+
     public void howYouPaying() {
         System.out.print("Are you [1]paying with a card or [2]paying inside? ");
         int payment = user.nextInt();
 
         if (payment == 1) {
             System.out.println("Please insert your card. ");
+            paymentType = "card";
             getZipCode();
         }
     }
