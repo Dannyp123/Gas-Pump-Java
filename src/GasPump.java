@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class GasPump {
     private Double regularPrice = 1.87;
@@ -11,6 +12,7 @@ public class GasPump {
     private Double price;
     private Double totalGallons;
     private String paymentType;
+    private Integer lives = 3;
 
 
     public void startPumping() {
@@ -22,9 +24,30 @@ public class GasPump {
 
     }
 
+    public void getZipCode() {
+        System.out.print("Please enter the zipcode for card. ");
+
+        while(lives != 0) {
+            Integer zCode = user.nextInt();
+
+            if (Pattern.matches("^[0-9]{5}(?:-[0-9]{4})?$", zCode.toString())) {
+                System.out.println("Processing...");
+                System.exit(0);
+            }
+            System.out.println("Please insert a valid zip code!");
+            lives--;
+        }
+
+    }
+
     public void howYouPaying() {
         System.out.print("Are you [1]paying with a card or [2]paying inside? ");
         int payment = user.nextInt();
+
+        if (payment == 1) {
+            System.out.println("Please insert your card. ");
+            getZipCode();
+        }
     }
 
 
@@ -60,6 +83,7 @@ public class GasPump {
             totalGallons = total / price;
         }
         System.out.println(String.format("You can get %.2f gallons for $ %s", totalGallons , total ));
+        howYouPaying();
 
 
 
