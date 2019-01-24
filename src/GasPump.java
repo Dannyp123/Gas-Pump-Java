@@ -5,23 +5,33 @@ public class GasPump {
     private Double premiumPrice = 1.98;
     private Double nonEthanolPrice = 2.13;
 
+
+    private Scanner user = new Scanner(System.in);
     private String fuelType;
     private Double price;
     private Double totalGallons;
+    private String paymentType;
 
 
-    public void welcome() {
+    public void startPumping() {
         System.out.println("----Welcome to Danny's Gas Mart----");
         System.out.println("Our gas prices are" + " [1]Regular: " + regularPrice + " [2]Premium: " + premiumPrice
-        + " [3]Non-Ethanol: " + nonEthanolPrice );
+        + " [3]Non-Ethanol: " + nonEthanolPrice + "\n");
         whatTypeGas();
         gettingTotalGallons();
 
     }
+
+    public void howYouPaying() {
+        System.out.print("Are you [1]paying with a card or [2]paying inside? ");
+        int payment = user.nextInt();
+    }
+
+
     public void whatTypeGas() {
-        Scanner reader = new Scanner(System.in);
-        System.out.print("What type of gas would you like");
-        int gasType = reader.nextInt();
+
+        System.out.print("What type of gas would you like ");
+        int gasType = user.nextInt();
         if (gasType == 1) {
             fuelType = "Regular";
             price = regularPrice;
@@ -36,22 +46,9 @@ public class GasPump {
         }
     }
 
-//    public Double gasPricing(int gasType) {
-//        if (gasType == 1) {
-//            return 1.87;
-//        }
-//        else if (gasType == 2) {
-//            return 1.98;
-//        }
-//        else {
-//            return 2.13;
-//        }
-//
-//    }
     public void gettingTotalGallons() {
-        Scanner reader = new Scanner(System.in);
-        System.out.println("How much you paying for? ");
-        double total = reader.nextDouble();
+        System.out.print("How much you paying for? ");
+        double total = user.nextDouble();
 
         if (fuelType.equals("Regular")) {
             totalGallons = total / price;
@@ -62,7 +59,7 @@ public class GasPump {
         else {
             totalGallons = total / price;
         }
-        System.out.println(String.format("You can get %.8f gallons for $ %s", totalGallons , total ));
+        System.out.println(String.format("You can get %.2f gallons for $ %s", totalGallons , total ));
 
 
 
