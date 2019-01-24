@@ -34,8 +34,14 @@ public class GasPump {
                 System.out.println("Processing...");
                 System.exit(0);
             }
-            System.out.println("Please insert a valid zip code!");
-            lives--;
+            else {
+                System.out.println("Please insert a valid zip code!");
+                lives--;
+                if (lives.equals(0)) {
+                    System.out.println("Sorry transaction canceled.");
+                }
+            }
+
         }
 
     }
