@@ -38,11 +38,16 @@ public class GasPump {
                 System.exit(0);
             }
             else {
-                System.out.println("Please insert a valid zip code!");
-                lives--;
-                if (lives == 0) {
-                    System.out.println("Sorry transaction canceled.");
+                while (lives != 0) {
+                    lives--;
+                    if (lives == 0) {
+                        System.out.println("Sorry transaction canceled.");
+                    }else{
+                        System.out.println("Please insert a valid zip code!");
+                        break;
+                    }
                 }
+
             }
 
         }
