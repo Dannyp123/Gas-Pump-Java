@@ -17,7 +17,7 @@ public class GasPump {
 
 
     public void startPumping() {
-        System.out.println("----Welcome to Danny's Gas Mart----");
+        System.out.println("----Welcome to Danny's Gas Mart----\n");
         System.out.println("Our gas prices are" + " [1]Regular: " + regularPrice + " [2]Premium: " + premiumPrice
         + " [3]Non-Ethanol: " + nonEthanolPrice + "\n");
         whatTypeGas();
@@ -33,14 +33,14 @@ public class GasPump {
 
             if (Pattern.matches("^[0-9]{5}(?:-[0-9]{4})?$", zCode.toString())) {
                 System.out.println("Processing...");
-                System.out.println("Thank you for your payment.");
+                System.out.println("Thank you for your payment.\n");
                 receiptChoice();
                 System.exit(0);
             }
             else {
                 System.out.println("Please insert a valid zip code!");
                 lives--;
-                if (lives.equals(0)) {
+                if (lives == 0) {
                     System.out.println("Sorry transaction canceled.");
                 }
             }
@@ -48,8 +48,6 @@ public class GasPump {
         }
 
     }
-
-
 
     public void receiptChoice() {
         System.out.println("Would you like a receipt [1]Yes or [2]No");
@@ -60,19 +58,27 @@ public class GasPump {
 
         }
         else {
+            System.out.println("----Danny's Gas Mart----");
+            System.out.println("1245 Ash Lane");
+            System.out.println("Water Valley, MS ");
+            System.out.println("38965\n");
             System.out.println("Thank you have a blessed day!!");
         }
     }
     public void printingReceipt() {
         System.out.println("----Danny's Gas Mart----");
-        System.out.println("Thank you and have a blessed day!");
+        System.out.println("1245 Ash Lane");
+        System.out.println("Water Valley, MS ");
+        System.out.println("38965\n");
         System.out.println("Type of Gas: " + fuelType);
         System.out.println("------------------------------");
         System.out.println(String.format("Total gallons: %.2f", totalGallons));
         System.out.println("------------------------------");
         System.out.println("Type of payment: " + paymentType);
         System.out.println("------------------------------");
-        System.out.println("Total cost: " + total);
+        System.out.println("Total cost: " + total + "\n");
+        System.out.println("Thank you and have a blessed day!");
+
     }
 
     public void howYouPaying() {
@@ -80,13 +86,14 @@ public class GasPump {
         int payment = user.nextInt();
 
         if (payment == 1) {
-            System.out.println("Please insert your card. ");
+            System.out.println("Please insert your card.\n");
             paymentType = "Card";
             getZipCode();
         }
         else {
-            System.out.println("Go see the person at the register inside.");
+            System.out.println("\nGo see the person at the register inside.\n");
             paymentType = "Pay inside";
+            receiptChoice();
         }
     }
 
@@ -126,7 +133,7 @@ public class GasPump {
             total = gasAmount;
             totalGallons = total / price;
         }
-        System.out.println(String.format("You can get %.2f gallons for $ %s", totalGallons , total ));
+        System.out.println(String.format("\nYou can get %.2f gallons for $ %s\n", totalGallons , total ));
         howYouPaying();
 
 
