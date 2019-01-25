@@ -66,10 +66,13 @@ public class GasPump {
     public void printingReceipt() {
         System.out.println("----Danny's Gas Mart----");
         System.out.println("Thank you and have a blessed day!");
-        System.out.println(String.format("Type of Gas: %s" +
-                "Total Gallons: %.2f" +
-                "Type of Pay: %s" +
-                "Total cost: %.2f", fuelType, totalGallons, paymentType, total));
+        System.out.println("Type of Gas: " + fuelType);
+        System.out.println("------------------------------");
+        System.out.println(String.format("Total gallons: %.2f", totalGallons));
+        System.out.println("------------------------------");
+        System.out.println("Type of payment: " + paymentType);
+        System.out.println("------------------------------");
+        System.out.println("Total cost: " + total);
     }
 
     public void howYouPaying() {
