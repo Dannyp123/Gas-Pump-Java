@@ -1,3 +1,5 @@
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
@@ -97,6 +99,7 @@ public class GasPump {
             receiptChoice();
         }
     }
+
 
 
     public void whatTypeGas() {
