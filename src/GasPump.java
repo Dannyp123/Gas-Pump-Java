@@ -12,7 +12,7 @@ public class GasPump {
     private Double price;
     private Double totalGallons;
     private String paymentType;
-    private Integer lives = 3;
+    private Integer chances = 3;
     private Double total;
 
 
@@ -29,7 +29,7 @@ public class GasPump {
     public void getZipCode() {
         System.out.print("Please enter the zipcode for card. ");
 
-        while(lives != 0) {
+        while(chances != 0) {
             Integer zCode = user.nextInt();
 
             if (Pattern.matches("^[0-9]{5}(?:-[0-9]{4})?$", zCode.toString())) {
@@ -39,9 +39,9 @@ public class GasPump {
                 System.exit(0);
             }
             else {
-                while (lives != 0) {
-                    lives--;
-                    if (lives == 0) {
+                while (chances != 0) {
+                    chances--;
+                    if (chances == 0) {
                         System.out.println("Sorry transaction canceled.");
                     }else{
                         System.out.println("Please insert a valid zip code!");
