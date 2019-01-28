@@ -17,13 +17,14 @@ public class GasPump {
 
 
     public void startPumping() {
-        System.out.println("----Welcome to Danny's Gas Mart----\n");
+        System.out.println("\n----Welcome to Danny's Gas Mart----\n");
         System.out.println("Our gas prices are" + " [1]Regular: " + regularPrice + " [2]Premium: " + premiumPrice
         + " [3]Non-Ethanol: " + nonEthanolPrice + "\n");
         whatTypeGas();
         gettingTotalGallons();
 
     }
+
 
     public void getZipCode() {
         System.out.print("Please enter the zipcode for card. ");
@@ -77,7 +78,7 @@ public class GasPump {
         System.out.println("38965\n");
         System.out.println("Type of Gas: " + fuelType);
         System.out.println("------------------------------");
-        System.out.println(String.format("Total gallons: %.2f", totalGallons));
+        System.out.println(String.format("Total gallons: %.0f", totalGallons));
         System.out.println("------------------------------");
         System.out.println("Type of payment: " + paymentType);
         System.out.println("------------------------------");
@@ -92,12 +93,12 @@ public class GasPump {
 
         if (payment == 1) {
             System.out.println("Please insert your card.\n");
-            paymentType = "Card";
+            paymentType = "Paid by card";
             getZipCode();
         }
         else {
             System.out.println("\nGo see the person at the register inside.\n");
-            paymentType = "Pay inside";
+            paymentType = "Paid inside";
             receiptChoice();
         }
     }
@@ -138,7 +139,7 @@ public class GasPump {
             total = gasAmount;
             totalGallons = total / price;
         }
-        System.out.println(String.format("\nYou can get %.2f gallons for $ %s\n", totalGallons , total ));
+        System.out.println(String.format("\nYou can get %.0f gallons for $ %s\n", totalGallons , total ));
         howYouPaying();
 
 
