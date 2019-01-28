@@ -7,7 +7,7 @@ public class Receipt {
     private Double total;
     private String fuelType;
     private String paymentType;
-    DateFormat dateFormat = new SimpleDateFormat("MM/DD/YYYY HH:mm:ss");
+    DateFormat dateFormat = new SimpleDateFormat("MM/DD/YYYY HH:mm");
     Date date = new Date();
 
 
