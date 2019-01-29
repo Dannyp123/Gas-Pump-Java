@@ -1,13 +1,14 @@
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Receipt {
+public class Receipt implements Serializable {
     private Double totalGallons;
     private Double total;
     private String fuelType;
     private String paymentType;
-    DateFormat dateFormat = new SimpleDateFormat("MM/DD/YYYY HH:mm");
+    DateFormat dateFormat = new SimpleDateFormat("MM/DD/YYYY hh:mm");
     Date date = new Date();
 
 
@@ -33,6 +34,7 @@ public class Receipt {
         System.out.println("------------------------------");
         System.out.println("Total cost: " + total + "\n");
         System.out.println("Thank you and have a blessed day!");
+        System.exit(0);
 
     }
 }

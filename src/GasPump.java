@@ -1,3 +1,4 @@
+import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -52,6 +53,13 @@ public class GasPump {
         return gasChoicePrice;
     }
 
+    public void pauseTime() {
+        try{
+            TimeUnit.SECONDS.sleep(2);
+        }catch(InterruptedException ex){
+            Thread.currentThread().interrupt();
+        }
+    }
 
 
     public void getZipCode() {
@@ -62,19 +70,16 @@ public class GasPump {
 
             if (Pattern.matches("^[0-9]{5}(?:-[0-9]{4})?$", zCode.toString())) {
                 System.out.println("\nProcessing...\n");
-                try{
-                    TimeUnit.SECONDS.sleep(2);
-                    System.out.println("Thank you for your payment.\n");
-                    receiptChoice();
-                    System.exit(0);
-                }catch(InterruptedException ex){
-                    Thread.currentThread().interrupt();
-                }
+                pauseTime();
+                System.out.println("Thank you for your payment.\n");
+                receiptChoice();
+
             }
             else {
                 while (chances != 0) {
                     chances--;
                     if (chances == 0) {
+                        pauseTime();
                         System.out.println("Sorry transaction canceled.");
                     }else{
                         System.out.println("Please insert a valid zip code!");
@@ -93,7 +98,9 @@ public class GasPump {
         int numChoice = user.nextInt();
         if (numChoice == 1) {
             System.out.println("\nPrinting out your receipt...\n");
+            pauseTime();
             Receipt reciept = new Receipt(paymentType, totalGallons, total, fuelType);
+            ReceiptSaving.loggingGasReceipts(reciept);
             reciept.printingReceipt();
 
 
@@ -104,45 +111,65 @@ public class GasPump {
             System.out.println("Water Valley, MS ");
             System.out.println("38965\n");
             System.out.println("Thank you have a blessed day!!");
+            System.exit(0);
         }
     }
 
 
-    public void howYouPaying() {
-        System.out.print("Are you [1]paying with a card or [2]paying inside? ");
-        int payment = user.nextInt();
+    public void howAreYouPaying() {
+        boolean statementPay = true;
+        while (statementPay){
+            System.out.print("Are you [1]paying with a card or [2]paying inside? ");
+            int payment = user.nextInt();
 
-        if (payment == 1) {
-            System.out.println("Please insert your card.\n");
-            paymentType = "Paid by card";
-            getZipCode();
+            if (payment == 1) {
+                System.out.println("\nPlease insert your card.\n");
+                paymentType = "Paid by card";
+                getZipCode();
+            }
+            else if (payment == 2){
+                System.out.println("\nGo see the person at the register inside.\n");
+                paymentType = "Paid inside";
+                receiptChoice();
+            }
+            else {
+                System.out.println("\nI AM CALLING THE POLICE..LEAVE\n");
+                pauseTime();
+                System.exit(0);
+            }
         }
-        else {
-            System.out.println("\nGo see the person at the register inside.\n");
-            paymentType = "Paid inside";
-            receiptChoice();
-        }
+
     }
 
 
 
     public void whatTypeGas() {
+        boolean statement = true;
+        while (statement) {
+            System.out.print("What type of gas would you like ");
+            int gasType = user.nextInt();
+            if (gasType == 1) {
+                fuelType = "Regular";
+                price = getGasPrice("Regular");
+                statement = false;
+            }
+            else if (gasType == 2) {
+                fuelType = "Premium";
+                price = getGasPrice("Premium");
+                statement = false;
 
+            }
+            else if (gasType == 3){
+                fuelType = "Non-Ethanol";
+                price = getGasPrice("Non-Ethanol");
+                statement = false;
 
-        System.out.print("What type of gas would you like ");
-        int gasType = user.nextInt();
-        if (gasType == 1) {
-            fuelType = "Regular";
-            price = getGasPrice("Regular");
+            }
+            else {
+                System.out.println("\nSorry not a gas type!\n");
+            }
         }
-        else if (gasType == 2) {
-            fuelType = "Premium";
-            price = getGasPrice("Premium");
-        }
-        else {
-            fuelType = "Non-Ethanol";
-            price = getGasPrice("Non-Ethanol");
-        }
+
     }
 
     public void gettingTotalGallons() {
@@ -153,12 +180,9 @@ public class GasPump {
             totalGallons = total / price;
 
         System.out.println(String.format("\nYou can get %.0f gallons for $ %s\n", totalGallons , total ));
-        howYouPaying();
-
-
-
-
+        howAreYouPaying();
 
     }
+
 
 }
