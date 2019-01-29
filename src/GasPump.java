@@ -1,8 +1,4 @@
-import java.io.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -79,10 +75,12 @@ public class GasPump {
                 while (chances != 0) {
                     chances--;
                     if (chances == 0) {
+                        System.out.println("\nPlease wait....\n");
                         pauseTime();
-                        System.out.println("Sorry transaction canceled.");
+                        System.out.println("Sorry transaction canceled.\n");
+                        System.exit(0);
                     }else{
-                        System.out.println("Please insert a valid zip code!");
+                        System.out.println("\nPlease insert a valid zip code!\n");
                         break;
                     }
                 }
