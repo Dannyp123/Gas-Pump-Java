@@ -16,26 +16,42 @@ public class GasPump {
     private String paymentType;
     private Integer chances = 3;
     private Double total;
+    private List<Gas> gasChoices = new ArrayList<>();
 
 
     public void startPumping() {
         System.out.println("\n----Welcome to Danny's Gas Mart----\n");
         gettingGasPrices();
-//        whatTypeGas();
-//        gettingTotalGallons();
+        whatTypeGas();
+        gettingTotalGallons();
 
     }
 
     public void gettingGasPrices() {
-        List<Gas> gasChoices = Arrays.asList(
-                new Gas("Regular", 1.87),
-                new Gas("Premium", 1.98),
-                new Gas("Non-Ethanol", 2.13)
-        );
+        int count = 0;
+
+        gasChoices.add(new Gas("Regular", 1.87));
+        gasChoices.add(new Gas("Premium", 1.98));
+        gasChoices.add(new Gas("Non-Ethanol", 2.13));
+
+
+
         for(var gas  : gasChoices) {
-            System.out.println(gas.name + " : " + gas.price);
+            count ++;
+            System.out.println(String.format("[%s]" + gas.name + " : " + gas.price, count) + "\n");
         }
     }
+
+    public Double getGasPrice(String gasName) {
+        Double gasChoicePrice = null;
+        for (var gasChoice : gasChoices) {
+            if (gasChoice.name == gasName) {
+                gasChoicePrice = gasChoice.price;
+            }
+        }
+        return gasChoicePrice;
+    }
+
 
 
     public void getZipCode() {
@@ -110,23 +126,24 @@ public class GasPump {
 
 
 
-//    public void whatTypeGas() {
-//
-//        System.out.print("What type of gas would you like ");
-//        int gasType = user.nextInt();
-//        if (gasType == 1) {
-//            fuelType = "Regular";
-//            price = regularPrice;
-//        }
-//        else if (gasType == 2) {
-//            fuelType = "Premium";
-//            price = premiumPrice;
-//        }
-//        else {
-//            fuelType = "Non-Ethanol";
-//            price = nonEthanolPrice;
-//        }
-//    }
+    public void whatTypeGas() {
+
+
+        System.out.print("What type of gas would you like ");
+        int gasType = user.nextInt();
+        if (gasType == 1) {
+            fuelType = "Regular";
+            price = getGasPrice("Regular");
+        }
+        else if (gasType == 2) {
+            fuelType = "Premium";
+            price = getGasPrice("Premium");
+        }
+        else {
+            fuelType = "Non-Ethanol";
+            price = getGasPrice("Non-Ethanol");
+        }
+    }
 
     public void gettingTotalGallons() {
         System.out.print("How much you paying for? $ ");
